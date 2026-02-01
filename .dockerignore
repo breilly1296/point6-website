@@ -1,8 +1,10 @@
+# Ignore development files
 node_modules
 .git
 .claude
-*.md
 Prompts
 New Project Files
 scripts
 partials
+
+# Include dist folder (don't ignore it)
