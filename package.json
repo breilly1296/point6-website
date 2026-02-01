@@ -1,0 +1,35 @@
+{
+  "name": "point6-website",
+  "version": "1.0.0",
+  "description": "Marketing website for Point6 - ServiceNow Implementation Experts",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.js",
+    "build:css": "node scripts/minify-css.js",
+    "build:js": "node scripts/minify-js.js",
+    "build:html": "node scripts/minify-html.js",
+    "build:images": "node scripts/optimize-images.js",
+    "build:sitemap": "node scripts/generate-sitemap.js",
+    "clean": "node scripts/clean.js",
+    "serve": "npx serve dist",
+    "serve:dev": "npx serve . -p 3000",
+    "deploy": "npm run build && gcloud app deploy",
+    "deploy:preview": "npm run build && gcloud app deploy --no-promote",
+    "lighthouse": "npx lighthouse http://localhost:5000 --view"
+  },
+  "devDependencies": {
+    "clean-css": "^5.3.3",
+    "html-minifier-terser": "^7.2.0",
+    "imagemin": "^8.0.1",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-svgo": "^10.0.1",
+    "serve": "^14.2.1",
+    "terser": "^5.26.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "Point6",
+  "license": "UNLICENSED"
+}

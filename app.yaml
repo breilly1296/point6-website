@@ -1,0 +1,78 @@
+# Google App Engine configuration for Point6 static website
+# Deploys from the dist/ folder after build
+
+runtime: python39  # Lightweight runtime for static files
+entrypoint: ""     # No entrypoint needed for static sites
+
+handlers:
+  # Serve static assets with long cache
+  - url: /css/(.*)
+    static_files: dist/css/\1
+    upload: dist/css/.*
+    expiration: "30d"
+    http_headers:
+      Cache-Control: "public, max-age=2592000"
+
+  - url: /js/(.*)
+    static_files: dist/js/\1
+    upload: dist/js/.*
+    expiration: "30d"
+    http_headers:
+      Cache-Control: "public, max-age=2592000"
+
+  - url: /assets/(.*)
+    static_files: dist/assets/\1
+    upload: dist/assets/.*
+    expiration: "30d"
+    http_headers:
+      Cache-Control: "public, max-age=2592000"
+
+  # Favicon and icons - moderate cache
+  - url: /favicon\.ico
+    static_files: dist/favicon.ico
+    upload: dist/favicon\.ico
+    expiration: "7d"
+
+  - url: /apple-touch-icon\.png
+    static_files: dist/apple-touch-icon.png
+    upload: dist/apple-touch-icon\.png
+    expiration: "7d"
+
+  # Robots and sitemap - short cache for updates
+  - url: /robots\.txt
+    static_files: dist/robots.txt
+    upload: dist/robots\.txt
+    expiration: "1d"
+
+  - url: /sitemap\.xml
+    static_files: dist/sitemap.xml
+    upload: dist/sitemap\.xml
+    expiration: "1d"
+
+  # HTML pages - short cache, revalidate often
+  - url: /(.+\.html)
+    static_files: dist/\1
+    upload: dist/.*\.html
+    expiration: "1h"
+    http_headers:
+      Cache-Control: "public, max-age=3600, must-revalidate"
+
+  # Homepage (index.html)
+  - url: /
+    static_files: dist/index.html
+    upload: dist/index\.html
+    expiration: "1h"
+    http_headers:
+      Cache-Control: "public, max-age=3600, must-revalidate"
+
+  # Catch-all for clean URLs (optional)
+  - url: /(.*)
+    static_files: dist/\1.html
+    upload: dist/.*\.html
+
+# Error handlers
+error_handlers:
+  - file: dist/404.html
+
+# Security headers applied to all responses
+# Note: Add these via Cloud CDN or dispatch.yaml for more control

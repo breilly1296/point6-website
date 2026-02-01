@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+
+# Google Cloud
+.gcloudignore
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Editor backups
+*.bak
+*.backup
+
+# Sensitive files
+credentials.json
+service-account.json
+*.pem
+*.key
+.claude/settings.local.json

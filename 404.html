@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Point6</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="theme-color" content="#3b82f6">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+        }
+        .error-content {
+            max-width: 500px;
+        }
+        .error-code {
+            font-family: var(--font-mono);
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+        .error-title {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+        .error-text {
+            color: var(--color-text-muted);
+            margin-bottom: 32px;
+        }
+        .error-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .error-suggestions {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--color-border);
+        }
+        .error-suggestions-title {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            margin-bottom: 16px;
+        }
+        .error-suggestions-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+        .error-suggestions-list li {
+            margin: 0;
+        }
+        .error-suggestions-list a {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 6px 12px;
+            border-radius: 4px;
+            background: rgba(59, 130, 246, 0.1);
+            transition: background 0.2s ease;
+        }
+        .error-suggestions-list a:hover {
+            background: rgba(59, 130, 246, 0.2);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip link for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <main id="main-content" class="error-page" role="main">
+        <div class="error-content">
+            <div class="error-code" aria-hidden="true">404</div>
+            <h1 class="error-title">This page doesn't exist</h1>
+            <p class="error-text">
+                No worries — it happens! The page might have moved, or the link might be outdated.
+            </p>
+            <nav class="error-links" aria-label="Error page navigation">
+                <a href="index.html" class="btn btn-primary">Back to Homepage</a>
+                <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+            </nav>
+            <div class="error-suggestions">
+                <p class="error-suggestions-title">Looking for something specific?</p>
+                <ul class="error-suggestions-list">
+                    <li><a href="services.html">Our ServiceNow Services</a></li>
+                    <li><a href="ai-launchpad.html">AI Launchpad Program</a></li>
+                    <li><a href="results.html">Case Studies & Results</a></li>
+                    <li><a href="about.html">About Point6</a></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
