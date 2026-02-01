@@ -1,44 +1,21 @@
 # Google App Engine configuration for Point6 static website
-# Deploys from the dist/ folder after build
-
-runtime: python39  # Lightweight runtime for static files
-entrypoint: ""     # No entrypoint needed for static sites
+runtime: nodejs20
 
 handlers:
   # Serve static assets with long cache
-  - url: /css/(.*)
-    static_files: dist/css/\1
-    upload: dist/css/.*
+  - url: /css
+    static_dir: dist/css
     expiration: "30d"
-    http_headers:
-      Cache-Control: "public, max-age=2592000"
 
-  - url: /js/(.*)
-    static_files: dist/js/\1
-    upload: dist/js/.*
+  - url: /js
+    static_dir: dist/js
     expiration: "30d"
-    http_headers:
-      Cache-Control: "public, max-age=2592000"
 
-  - url: /assets/(.*)
-    static_files: dist/assets/\1
-    upload: dist/assets/.*
+  - url: /assets
+    static_dir: dist/assets
     expiration: "30d"
-    http_headers:
-      Cache-Control: "public, max-age=2592000"
 
-  # Favicon and icons - moderate cache
-  - url: /favicon\.ico
-    static_files: dist/favicon.ico
-    upload: dist/favicon\.ico
-    expiration: "7d"
-
-  - url: /apple-touch-icon\.png
-    static_files: dist/apple-touch-icon.png
-    upload: dist/apple-touch-icon\.png
-    expiration: "7d"
-
-  # Robots and sitemap - short cache for updates
+  # Robots and sitemap
   - url: /robots\.txt
     static_files: dist/robots.txt
     upload: dist/robots\.txt
@@ -49,30 +26,40 @@ handlers:
     upload: dist/sitemap\.xml
     expiration: "1d"
 
-  # HTML pages - short cache, revalidate often
-  - url: /(.+\.html)
-    static_files: dist/\1
-    upload: dist/.*\.html
-    expiration: "1h"
-    http_headers:
-      Cache-Control: "public, max-age=3600, must-revalidate"
+  - url: /site\.webmanifest
+    static_files: dist/site.webmanifest
+    upload: dist/site\.webmanifest
 
-  # Homepage (index.html)
+  # HTML pages (clean URLs)
+  - url: /services
+    static_files: dist/services.html
+    upload: dist/services\.html
+
+  - url: /about
+    static_files: dist/about.html
+    upload: dist/about\.html
+
+  - url: /contact
+    static_files: dist/contact.html
+    upload: dist/contact\.html
+
+  - url: /results
+    static_files: dist/results.html
+    upload: dist/results\.html
+
+  - url: /ai-launchpad
+    static_files: dist/ai-launchpad.html
+    upload: dist/ai-launchpad\.html
+
+  # Homepage
   - url: /
     static_files: dist/index.html
     upload: dist/index\.html
-    expiration: "1h"
-    http_headers:
-      Cache-Control: "public, max-age=3600, must-revalidate"
 
-  # Catch-all for clean URLs (optional)
-  - url: /(.*)
+  # Fallback for .html extension
+  - url: /(.+)\.html
     static_files: dist/\1.html
-    upload: dist/.*\.html
+    upload: dist/(.+)\.html
 
-# Error handlers
 error_handlers:
   - file: dist/404.html
-
-# Security headers applied to all responses
-# Note: Add these via Cloud CDN or dispatch.yaml for more control
