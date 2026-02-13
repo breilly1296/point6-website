@@ -17,6 +17,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Theme initialization (prevent flash of wrong theme) -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('point6-theme') || 'dark';
+            const effectiveTheme = theme === 'system'
+                ? (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+                : theme;
+            if (effectiveTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+
     <style>
         .error-page {
             min-height: 100vh;

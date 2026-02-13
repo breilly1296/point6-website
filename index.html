@@ -38,6 +38,19 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 
+    <!-- Theme initialization (prevent flash of wrong theme) -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('point6-theme') || 'dark';
+            const effectiveTheme = theme === 'system'
+                ? (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+                : theme;
+            if (effectiveTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+
     <!-- Structured Data - Organization -->
     <script type="application/ld+json">
     {
@@ -45,7 +58,7 @@
         "@type": "Organization",
         "name": "Point6",
         "url": "https://point6.io",
-        "logo": "https://point6.io/assets/images/logo.png",
+        "logo": "https://point6.io/assets/images/point6-logo.jpg",
         "description": "Point6 is a ServiceNow implementation consultancy helping companies get real value from the platform.",
         "email": "hello@point6.io",
         "sameAs": [
@@ -67,25 +80,82 @@
     <nav class="site-nav" aria-label="Main navigation" role="navigation">
         <div class="container">
             <a href="index.html" class="logo" aria-label="Point6 - Return to homepage">
-                <span class="logo-dot" aria-hidden="true"></span>
-                Point6
+                <img src="assets/images/point6-logo.jpg" alt="Point6 - a Mana'o Pili Company" class="logo-img">
             </a>
-            <button
-                class="mobile-menu-btn"
-                aria-label="Open navigation menu"
-                aria-expanded="false"
-                aria-controls="nav-links"
-                type="button"
-            >
-                <span class="hamburger-line" aria-hidden="true"></span>
-                <span class="hamburger-line" aria-hidden="true"></span>
-                <span class="hamburger-line" aria-hidden="true"></span>
-            </button>
+            <div class="nav-right">
+                <!-- Theme Toggle -->
+                <div class="theme-toggle" role="group" aria-label="Theme selection">
+                    <button class="theme-toggle-btn" data-theme="light" aria-label="Light theme" title="Light theme">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                    </button>
+                    <button class="theme-toggle-btn" data-theme="dark" aria-label="Dark theme" title="Dark theme">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </button>
+                    <button class="theme-toggle-btn" data-theme="system" aria-label="System theme" title="System theme">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </button>
+                </div>
+                <button
+                    class="mobile-menu-btn"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="nav-links"
+                    type="button"
+                >
+                    <span class="hamburger-line" aria-hidden="true"></span>
+                    <span class="hamburger-line" aria-hidden="true"></span>
+                    <span class="hamburger-line" aria-hidden="true"></span>
+                </button>
+            </div>
             <div class="nav-links" id="nav-links" role="menubar" aria-label="Primary navigation">
                 <a href="services.html" role="menuitem">Services</a>
                 <a href="ai-launchpad.html" role="menuitem">AI Launchpad</a>
                 <a href="results.html" role="menuitem">Results</a>
                 <a href="about.html" role="menuitem">About</a>
+                <!-- Mobile Theme Toggle (inside menu) -->
+                <div class="theme-toggle" role="group" aria-label="Theme selection">
+                    <button class="theme-toggle-btn" data-theme="light" aria-label="Light theme" title="Light theme">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                    </button>
+                    <button class="theme-toggle-btn" data-theme="dark" aria-label="Dark theme" title="Dark theme">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </button>
+                    <button class="theme-toggle-btn" data-theme="system" aria-label="System theme" title="System theme">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </button>
+                </div>
                 <a href="contact.html" class="btn btn-primary" role="menuitem">Get in Touch</a>
             </div>
         </div>
@@ -327,9 +397,8 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="index.html" class="logo">
-                        <span class="logo-dot" aria-hidden="true"></span>
-                        Point6
+                    <a href="index.html" class="logo" aria-label="Point6 - Return to homepage">
+                        <img src="assets/images/point6-logo.jpg" alt="Point6 - a Mana'o Pili Company" class="logo-img">
                     </a>
                     <p class="footer-tagline">Flexible, high-quality ServiceNow expertise.</p>
                 </div>

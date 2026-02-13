@@ -598,10 +598,86 @@
     }
 
     // =========================================================================
+    // Theme Toggle
+    // =========================================================================
+
+    function initThemeToggle() {
+        const STORAGE_KEY = 'point6-theme';
+        const THEMES = { LIGHT: 'light', DARK: 'dark', SYSTEM: 'system' };
+
+        // Get all theme toggle buttons
+        const themeButtons = document.querySelectorAll('.theme-toggle-btn');
+
+        if (!themeButtons.length) return;
+
+        // Get system preference
+        function getSystemTheme() {
+            return window.matchMedia('(prefers-color-scheme: light)').matches ? THEMES.LIGHT : THEMES.DARK;
+        }
+
+        // Get stored preference or default
+        function getStoredPreference() {
+            try {
+                return localStorage.getItem(STORAGE_KEY) || THEMES.DARK;
+            } catch (e) {
+                return THEMES.DARK;
+            }
+        }
+
+        // Save preference
+        function savePreference(theme) {
+            try {
+                localStorage.setItem(STORAGE_KEY, theme);
+            } catch (e) {
+                // localStorage not available
+            }
+        }
+
+        // Apply theme to document
+        function applyTheme(preference) {
+            const effectiveTheme = preference === THEMES.SYSTEM ? getSystemTheme() : preference;
+
+            if (effectiveTheme === THEMES.LIGHT) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+
+            // Update active states on all toggle buttons
+            themeButtons.forEach(btn => {
+                const btnTheme = btn.dataset.theme;
+                btn.classList.toggle('active', btnTheme === preference);
+            });
+        }
+
+        // Handle button clicks
+        themeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const theme = btn.dataset.theme;
+                savePreference(theme);
+                applyTheme(theme);
+            });
+        });
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
+            const preference = getStoredPreference();
+            if (preference === THEMES.SYSTEM) {
+                applyTheme(THEMES.SYSTEM);
+            }
+        });
+
+        // Initialize on load
+        const preference = getStoredPreference();
+        applyTheme(preference);
+    }
+
+    // =========================================================================
     // Initialize Everything
     // =========================================================================
 
     function init() {
+        initThemeToggle();
         initMobileMenu();
         initNavScroll();
         initActiveNavHighlight();

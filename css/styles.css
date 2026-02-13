@@ -7,8 +7,155 @@
     --color-accent: #3b82f6;
     --color-accent-glow: rgba(59, 130, 246, 0.15);
     --color-border: rgba(255, 255, 255, 0.08);
+    --color-shadow: rgba(0, 0, 0, 0.3);
     --font-sans: 'DM Sans', -apple-system, sans-serif;
     --font-mono: 'Space Mono', monospace;
+}
+
+/* Light Theme */
+[data-theme="light"] {
+    --color-bg: #f8fafc;
+    --color-bg-elevated: #ffffff;
+    --color-bg-card: #ffffff;
+    --color-text: #0f172a;
+    --color-text-muted: #64748b;
+    --color-accent: #2563eb;
+    --color-accent-glow: rgba(37, 99, 235, 0.1);
+    --color-border: rgba(15, 23, 42, 0.1);
+    --color-shadow: rgba(0, 0, 0, 0.08);
+}
+
+/* Light theme specific overrides */
+[data-theme="light"] body::before {
+    opacity: 0.015;
+}
+
+[data-theme="light"] nav,
+[data-theme="light"] .site-nav {
+    background: rgba(248, 250, 252, 0.9);
+    border-bottom-color: var(--color-border);
+}
+
+[data-theme="light"] nav.scrolled,
+[data-theme="light"] .site-nav.scrolled {
+    background: rgba(248, 250, 252, 0.98);
+}
+
+[data-theme="light"] .mobile-menu-overlay {
+    background: rgba(248, 250, 252, 0.95);
+}
+
+[data-theme="light"] .nav-links {
+    background: var(--color-bg-elevated);
+}
+
+[data-theme="light"] .service-card,
+[data-theme="light"] .case-study-card,
+[data-theme="light"] .testimonial-card,
+[data-theme="light"] .principle-card,
+[data-theme="light"] .team-card,
+[data-theme="light"] .contact-option,
+[data-theme="light"] .stat,
+[data-theme="light"] .stats-bar-item,
+[data-theme="light"] .founder-card,
+[data-theme="light"] .badge-card,
+[data-theme="light"] .result-metric,
+[data-theme="light"] .why-feature,
+[data-theme="light"] .location-card,
+[data-theme="light"] .pricing-card,
+[data-theme="light"] .ai-solution-category,
+[data-theme="light"] .expect-step {
+    box-shadow: 0 1px 3px var(--color-shadow), 0 1px 2px -1px var(--color-shadow);
+}
+
+[data-theme="light"] .service-card:hover,
+[data-theme="light"] .case-study-card:hover,
+[data-theme="light"] .principle-card:hover {
+    box-shadow: 0 10px 25px -5px var(--color-shadow), 0 8px 10px -6px var(--color-shadow);
+}
+
+[data-theme="light"] .btn-secondary {
+    background: var(--color-bg-elevated);
+    border-color: var(--color-border);
+}
+
+[data-theme="light"] .btn-secondary:hover {
+    background: var(--color-bg);
+    border-color: var(--color-accent);
+}
+
+[data-theme="light"] .featured-service-card {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(37, 99, 235, 0.02) 100%);
+}
+
+[data-theme="light"] .featured-case-study-header,
+[data-theme="light"] .comparison-table th {
+    background: var(--color-bg);
+}
+
+[data-theme="light"] .comparison-table th.highlight-col {
+    background: rgba(37, 99, 235, 0.08);
+}
+
+[data-theme="light"] .comparison-table td.highlight-col {
+    background: rgba(37, 99, 235, 0.04);
+}
+
+[data-theme="light"] .comparison-table tbody tr:hover {
+    background: var(--color-bg);
+}
+
+[data-theme="light"] .comparison-table tbody tr:hover td.highlight-col {
+    background: rgba(37, 99, 235, 0.08);
+}
+
+[data-theme="light"] .contact-form {
+    box-shadow: 0 4px 6px -1px var(--color-shadow), 0 2px 4px -2px var(--color-shadow);
+}
+
+[data-theme="light"] .form-group input,
+[data-theme="light"] .form-group textarea,
+[data-theme="light"] .form-group select {
+    background: var(--color-bg);
+    border-color: var(--color-border);
+}
+
+[data-theme="light"] .form-group input:focus,
+[data-theme="light"] .form-group textarea:focus,
+[data-theme="light"] .form-group select:focus {
+    background: var(--color-bg-elevated);
+}
+
+[data-theme="light"] footer {
+    background: var(--color-bg-elevated);
+    border-top-color: var(--color-border);
+}
+
+[data-theme="light"] .hamburger-line {
+    background: var(--color-text);
+}
+
+[data-theme="light"] .founder-card {
+    background: var(--color-bg-elevated);
+}
+
+[data-theme="light"] .image-placeholder-box,
+[data-theme="light"] .founder-photo-placeholder {
+    background: var(--color-bg);
+}
+
+/* Theme transition */
+body,
+body * {
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Exclude certain elements from theme transition */
+.btn,
+.link-arrow,
+.nav-links a,
+a {
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.2s ease, gap 0.2s ease, transform 0.2s ease;
 }
 
 * {
@@ -99,33 +246,33 @@ nav .container,
 }
 
 .logo {
-    font-family: var(--font-mono);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--color-text);
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 8px;
+    flex-shrink: 0;
 }
 
-.logo-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--color-accent);
-    border-radius: 50%;
-    animation: pulse 2s ease-in-out infinite;
+.logo-img {
+    width: 150px;
+    height: auto;
+    display: block;
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(0.9); }
+/* Logo has a light/white background - round corners to blend better with dark bg */
+.logo-img {
+    border-radius: 4px;
 }
 
 .nav-links {
     display: flex;
     gap: 32px;
     align-items: center;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 .nav-links a {
@@ -138,6 +285,64 @@ nav .container,
 .nav-links a:hover,
 .nav-links a.active {
     color: var(--color-text);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 4px;
+    gap: 2px;
+}
+
+.theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+    color: var(--color-text);
+    background: var(--color-bg-elevated);
+}
+
+.theme-toggle-btn.active {
+    background: var(--color-accent);
+    color: white;
+}
+
+.theme-toggle-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Mobile theme toggle - smaller and in nav */
+@media (max-width: 768px) {
+    .theme-toggle {
+        padding: 3px;
+        gap: 1px;
+    }
+
+    .theme-toggle-btn {
+        width: 28px;
+        height: 28px;
+    }
+
+    .theme-toggle-btn svg {
+        width: 14px;
+        height: 14px;
+    }
 }
 
 /* Mobile Menu Button */
@@ -198,11 +403,15 @@ nav .container,
     backdrop-filter: blur(10px);
     z-index: 90;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    visibility: hidden; /* Completely hide when inactive */
+    pointer-events: none; /* Prevent blocking clicks when invisible */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .mobile-menu-overlay.active {
     opacity: 1;
+    visibility: visible; /* Show when menu is open */
+    pointer-events: auto; /* Allow clicks when menu is open */
 }
 
 /* Body scroll lock when menu is open */
@@ -3169,6 +3378,10 @@ footer {
     margin-bottom: 16px;
 }
 
+.footer-brand .logo-img {
+    width: 130px;
+}
+
 .footer-tagline {
     color: var(--color-text-muted);
     font-size: 0.95rem;
@@ -3449,12 +3662,21 @@ nav.scrolled {
 
 @media (max-width: 768px) {
     /* Mobile navigation */
+    .logo-img {
+        width: 120px;
+    }
+
+    .footer-brand .logo-img {
+        width: 110px;
+    }
+
     .mobile-menu-btn {
         display: flex;
     }
 
     .mobile-menu-overlay {
         display: block;
+        visibility: hidden; /* Keep hidden until .active is added */
     }
 
     .nav-links {
@@ -3492,6 +3714,17 @@ nav.scrolled {
         width: auto;
         margin-top: 16px;
         min-height: 44px;
+    }
+
+    /* Theme toggle in mobile menu */
+    .nav-links .theme-toggle {
+        margin-top: 16px;
+        order: 10; /* Push to end of flex container */
+    }
+
+    /* Desktop theme toggle - hide on mobile (moved to mobile menu) */
+    .nav-right .theme-toggle {
+        display: none;
     }
 
     .hero-buttons {
